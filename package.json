@@ -1,8 +1,9 @@
 {
-  "name": "jest-selenium",
+  "name": "jest-selenium-demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description":
+    "This project shows how to drive your selenium tests with Jest.",
+  "main": "index.test.js",
   "scripts": {
     "test": "jest"
   },
