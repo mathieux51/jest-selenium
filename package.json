@@ -1,0 +1,17 @@
+{
+  "name": "jest-selenium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Mathieu Schmidt",
+  "license": "ISC",
+  "devDependencies": {
+    "chromedriver": "^2.37.0",
+    "geckodriver": "^1.11.0",
+    "jest": "^22.4.3",
+    "selenium-webdriver": "3.x"
+  }
+}
