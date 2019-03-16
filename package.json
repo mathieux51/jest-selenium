@@ -1,8 +1,7 @@
 {
   "name": "jest-selenium-demo",
   "version": "1.0.0",
-  "description":
-    "This project shows how to drive your selenium tests with Jest.",
+  "description": "This project shows how to drive your selenium tests with Jest.",
   "main": "index.test.js",
   "scripts": {
     "test": "jest"
@@ -10,9 +9,9 @@
   "author": "Mathieu Schmidt",
   "license": "ISC",
   "devDependencies": {
-    "chromedriver": "^2.37.0",
-    "geckodriver": "^1.11.0",
-    "jest": "^22.4.3",
+    "chromedriver": "^2.46.0",
+    "geckodriver": "^1.16.0",
+    "jest": "^24.5.0",
     "selenium-webdriver": "3.x"
   }
 }

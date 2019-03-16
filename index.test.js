@@ -3,52 +3,25 @@ require('selenium-webdriver/chrome')
 require('selenium-webdriver/firefox')
 require('chromedriver')
 require('geckodriver')
+const { querySelector } = require('./helpers')
 
 const rootURL = 'https://www.mozilla.org/en-US/'
-const d = new Builder().forBrowser('firefox').build()
-const waitUntilTime = 20000
-let driver, el, actual, expected
+let driver
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60 * 5
 
-async function getElementById(id) {
-  const el = await driver.wait(until.elementLocated(By.id(id)), waitUntilTime)
-  return await driver.wait(until.elementIsVisible(el), waitUntilTime)
-}
-
-async function getElementByXPath(xpath) {
-  const el = await driver.wait(
-    until.elementLocated(By.xpath(xpath)),
-    waitUntilTime
-  )
-  return await driver.wait(until.elementIsVisible(el), waitUntilTime)
-}
-
-it('waits for the driver to start', () => {
-  return d.then(_d => {
-    driver = _d
-  })
+beforeAll(async () => {
+  driver = await new Builder().forBrowser('firefox').build()
 })
 
+afterAll(async () => driver.quit())
+
 it('initialises the context', async () => {
-  await driver
-    .manage()
-    .window()
-    .setPosition(0, 0)
-  await driver
-    .manage()
-    .window()
-    .setSize(1280, 1024)
   await driver.get(rootURL)
 })
 
 it('should click on navbar button to display a drawer', async () => {
-  el = await getElementById('nav-button-menu')
-  el.click()
-  el = await getElementByXPath(
-    '//*[@id="moz-global-nav-drawer"]/div/div/ul/li[1]/h3/a'
-  )
-
-  actual = await el.getText()
-  expected = 'Firefox'
+  const anchor = await querySelector('[href=\'/en-US/firefox/\']', driver)
+  const actual = await anchor.getText()
+  const expected = 'Firefox'
   expect(actual).toEqual(expected)
 })
